@@ -1,0 +1,22 @@
+{
+  "name": "typed-simple-busboy",
+  "displayName": "Async fashioned simple Busboy wrapper for express 4 & 5",
+  "type": "module",
+  "author": {
+    "name": "Adam Polczynski"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start:server": "tsx watch server/index.ts",
+    "start:upload": "tsx watch client/send-file.ts"
+  },
+  "dependencies": {
+    "@types/express": "^5.0.0",
+    "busboy": "^1.6.0",
+    "express": ">=5.0.0"
+  },
+  "devDependencies": {
+    "@types/busboy": "^1.5.4",
+    "tsx": "^4.19.1"
+  }
+}

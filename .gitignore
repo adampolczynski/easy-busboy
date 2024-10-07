@@ -1,0 +1,6 @@
+node_modules/
+*.log
+pnpm-lock.yaml
+
+
+lib/index.ts
