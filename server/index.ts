@@ -3,6 +3,8 @@ import { asyncBusboy } from "../lib";
 
 const app = express();
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
   res.send("hello world");
 });
@@ -10,8 +12,8 @@ app.get("/", (req, res) => {
 app.post("/upload-file", async (req, res) => {
   console.debug(req.headers);
   const res2 = await asyncBusboy(req, {});
-  console.debug(res2);
-  res.send(res2);
+  console.debug("response from async busboy", res2);
+  res.status(200).send(res2);
 });
 
 const port = 3000;

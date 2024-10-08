@@ -1,7 +1,24 @@
 {
-  "name": "typed-simple-busboy",
-  "displayName": "Async fashioned simple Busboy wrapper for express 4 & 5",
+  "name": "typed-async-busboy",
+  "package-name": "typed-async-busboy",
+  "version": "0.0.0",
+  "displayName": "Async fashioned simple Busboy wrapper",
+  "description": "Async fashioned simple Busboy wrapper for express 4 & 5, Koa & Fastify",
   "type": "module",
+  "keywords": [
+    "Busboy",
+    "wrapper",
+    "upload",
+    "Express",
+    "Koa",
+    "Express4",
+    "middleware",
+    "file upload",
+    "async",
+    "await",
+    "simple"
+  ],
+  "main": "./lib/index.ts",
   "author": {
     "name": "Adam Polczynski"
   },
