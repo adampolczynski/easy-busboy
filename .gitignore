@@ -4,3 +4,6 @@ pnpm-lock.yaml
 
 
 lib/index.ts
+
+examples/**/pnpm-lock.yaml
+examples/**/node_modules/

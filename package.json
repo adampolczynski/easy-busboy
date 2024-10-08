@@ -1,39 +1,47 @@
 {
-  "name": "typed-async-busboy",
-  "package-name": "typed-async-busboy",
+  "name": "easy-busboy",
+  "package-name": "easy-busboy",
   "version": "0.0.0",
-  "displayName": "Async fashioned simple Busboy wrapper",
-  "description": "Async fashioned simple Busboy wrapper for express 4 & 5, Koa & Fastify",
-  "type": "module",
+  "displayName": "Easy Busboy wrapper",
+  "description": "Await-like simple Busboy wrapper for express 4, 5, Koa, also works within some cloud functions",
   "keywords": [
-    "Busboy",
+    "easy-busboy",
+    "easy-upload",
+    "busboy",
     "wrapper",
     "upload",
+    "multi-upload",
+    "form",
     "Express",
     "Koa",
-    "Express4",
     "middleware",
-    "file upload",
+    "file-upload",
     "async",
-    "await",
-    "simple"
+    "await"
   ],
   "main": "./lib/index.ts",
   "author": {
-    "name": "Adam Polczynski"
+    "name": "Adam Połczyński <adam_polczynski@yahoo.com>"
   },
   "license": "MIT",
   "scripts": {
-    "start:server": "tsx watch server/index.ts",
+    "start:server:express4": "tsx watch server/express4/index.ts",
+    "start:server:express5": "tsx watch server/express5/index.ts",
+    "start:server:koa": "tsx watch server/koa/index.ts",
     "start:upload": "tsx watch client/send-file.ts"
   },
   "dependencies": {
-    "@types/express": "^5.0.0",
-    "busboy": "^1.6.0",
-    "express": ">=5.0.0"
+    "busboy": "^1.6.0"
   },
   "devDependencies": {
     "@types/busboy": "^1.5.4",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.7.4",
     "tsx": "^4.19.1"
+  },
+  "prettier": {
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true
   }
 }
