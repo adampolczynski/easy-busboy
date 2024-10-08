@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "lib": ["es2023"],
+
+    "module": "node16",
+
+    "target": "es2022",
+
+    "strict": true,
+
+    "esModuleInterop": true,
+
+    "skipLibCheck": true,
+
+    "noImplicitAny": true,
+
+    "preserveConstEnums": true,
+
+    "outDir": "./dist",
+
+    "sourceMap": true
+  },
+  "include": ["lib/**/*"],
+  "exclude": ["**/*.test.ts"]
+}

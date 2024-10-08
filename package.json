@@ -25,10 +25,14 @@
   },
   "license": "MIT",
   "scripts": {
-    "start:server:express4": "tsx watch server/express4/index.ts",
-    "start:server:express5": "tsx watch server/express5/index.ts",
-    "start:server:koa": "tsx watch server/koa/index.ts",
-    "start:upload": "tsx watch client/send-file.ts"
+    "examples:servers:install": "cd examples/servers/express4 && pnpm i && cd ../express5 && pnpm i && cd ../koa && pnpm i",
+    "examples:servers:express4:start": "tsx watch examples/servers/express4/index.ts",
+    "examples:servers:express5:start": "tsx watch examples/servers/express5/index.ts",
+    "examples:servers:koa:start": "tsx watch examples/servers/koa/index.ts",
+    "examples:servers:clean": "(cd examples/servers/express4 && rm -rf node_modules/ && rm pnpm-lock.yaml) & (cd ../express5 && rm -rf node_modules/ && rm pnpm-lock.yaml) & (cd ../koa && rm -rf node_modules/ && rm pnpm-lock.yaml)",
+    "examples:client:": "tsx watch client/send-file.ts",
+    "build": "tsc",
+    "install": "pnpm run build"
   },
   "dependencies": {
     "busboy": "^1.6.0"

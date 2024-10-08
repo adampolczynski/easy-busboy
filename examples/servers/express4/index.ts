@@ -1,6 +1,8 @@
 import express from 'express';
 import { useBusboy } from '../../../lib';
 
+const PORT = process.argv[2] ? parseInt(process.argv[2]) : 3000;
+
 const app = express();
 
 app.post('/upload-file', async (req, res) => {
@@ -8,8 +10,6 @@ app.post('/upload-file', async (req, res) => {
   res.status(200).send({ fields, files });
 });
 
-const port = 3000;
-
-app.listen(port, () => {
-  console.debug(`server listening on ${port}`);
+app.listen(PORT, () => {
+  console.debug(`Express4 listening on localhost:${PORT} 🚀`);
 });

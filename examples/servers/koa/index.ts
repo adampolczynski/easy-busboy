@@ -3,13 +3,14 @@ import KoaRouter from 'koa-router';
 import koaParser from 'koa-bodyparser';
 import koaCors from '@koa/cors';
 
+const PORT = process.argv[2] ? parseInt(process.argv[2]) : 3000;
+
 const App = new Koa();
-const KOA_PORT = 3003;
 
 App.use(koaParser())
   .use(koaCors())
-  .listen(KOA_PORT, () => {
-    console.log(`🚀 Koa listening http://127.0.0.1:${KOA_PORT}/ 🚀`);
+  .listen(PORT, () => {
+    console.log(`🚀 Koa listening on localhost:${PORT} 🚀`);
   });
 const router = new KoaRouter();
 
