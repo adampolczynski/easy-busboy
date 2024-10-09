@@ -17,11 +17,10 @@ interface IFieldRecord {
 export interface IFiles extends Record<string, IFileRecord> {}
 export interface IFields extends Record<string, IFieldRecord> {}
 
-interface IEasyBusboyResponse
-  extends Promise<{
-    files: IFiles;
-    fields: IFields;
-  }> {}
+export interface IEasyBusboyResponse {
+  files: IFiles;
+  fields: IFields;
+}
 
 /**
  * * Main method to utilize busboy, accepts Express's request
@@ -45,7 +44,7 @@ interface IEasyBusboyResponse
 export const easyBusboy = (
   request: IncomingMessage & { headers: IncomingHttpHeaders },
   config?: Busboy.BusboyConfig
-): IEasyBusboyResponse => {
+): Promise<IEasyBusboyResponse> => {
   const files: IFiles = {};
   const fields: IFields = {};
 
@@ -78,7 +77,7 @@ export const easyBusboy = (
     };
 
     const onError = (err: Error) => {
-      reject(err);
+      reject(err.message);
     };
 
     const onLimit = (type: 'parts' | 'files' | 'fields') => {
@@ -87,11 +86,7 @@ export const easyBusboy = (
       onError(err);
     };
 
-    const onEnd = (err: Error) => {
-      if (err) {
-        onError(err);
-      }
-
+    const onEnd = () => {
       resolve({
         fields,
         files,

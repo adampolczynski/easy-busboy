@@ -1,26 +1,20 @@
 # Easy, promise-like typed Busboy wrapper
 
-[![badge](https://img.shields.io/badge/download-NPM-<COLOR>.svg)](https://npmjs.org/package/easy-busboy) ![badge](https://img.shields.io/badge/tested%20with-Jest-<COLOR>.svg) ![badge](http://img.shields.io/badge/coverage-78%25-green.svg) [![badge](https://img.shields.io/badge/my-LinkedIn-blue.svg)](https://www.linkedin.com/in/adam-polczynski-77595013b/)
+[![badge](https://img.shields.io/badge/download-NPM-<COLOR>.svg)](https://npmjs.org/package/easy-busboy) ![badge](https://img.shields.io/badge/tested%20with-Jest-<COLOR>.svg) ![badge](http://img.shields.io/badge/coverage-88%25-green.svg) [![badge](https://img.shields.io/badge/my-LinkedIn-blue.svg)](https://www.linkedin.com/in/adam-polczynski-77595013b/)
 
 ##### Built with:
 
 ![badge](https://img.shields.io/badge/TypeScript-blue.svg) ![badge](https://img.shields.io/badge/pnpm-red.svg) ![badge](https://img.shields.io/badge/pure%20joy!-yellow.svg)
 
-[typescript-image]: https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white
-[pnpm-image]: https://img.shields.io/badge/pnpm-%234a4a4a.svg?style=for-the-badge&logo=pnpm&logoColor=f69220
-[npm-image]: https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white
-[express-image]: https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB
-[koa-image]: https://img.shields.io/badge/Koa-33333D?logo=koa&logoColor=fff&style=flat-square
-[download-url]: https://npmjs.org/package/easy-busboy
-
 #### Work with multipart/form-data uploads with one-liner
 
 - easily handle multiple `values`/`files` sent as `formData` with **one-liner**,
 
-```
+```ts
 const { fields, files } = await easyBusboy(req);
 ```
 
+- well covered with tests (still to be enhanced),
 - based on [Busboy](http://github.com/mscdex/busboy),
 - to be used with [Koa](https://github.com/koajs/koa) and [Express](https://github.com/expressjs) (4 & 5),
 - [WIP] Works when implemented as a **Express GCP cloud function** (tested with firebase SDK, see [here](http://google.com))
@@ -98,12 +92,13 @@ Finally when server is listening either launch some example client (look at `pac
 
 ### Tests
 
+- `pnpm test` to run,
 - `lib/*test.ts` contains some positive/negative test scenarios clearly explaining functionality,
 
 ##### Coverage
 
-| File       | % Stmts   | % Branch   | % Funcs   | % Lines   | Uncovered Line #s   |
-| ---------- | --------- | ---------- | --------- | --------- | ------------------- |
-| All files  | 78.94     | 75         | 83.33     | 78.57     |
-| utils.ts   | 78.94     | 75         | 83.33     | 78.57     | 19-25               |
-| ---------- | --------- | ---------- | --------- | --------- | ------------------- |
+| File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s |
+| --------- | ------- | -------- | ------- | ------- | ----------------- |
+| All files | 88.52   | 71.42    | 70      | 96.07   |
+| index.ts  | 85.71   | 33.33    | 64.28   | 94.59   | 113-114           |
+| utils.ts  | 94.73   | 100      | 83.33   | 100     |
