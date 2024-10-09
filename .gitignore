@@ -3,8 +3,11 @@ node_modules/
 pnpm-lock.yaml
 
 
-lib/index.ts
 dist/
 
+# examples dependencies and lock
 examples/**/pnpm-lock.yaml
 examples/**/node_modules/
+
+# images downloaded by client examples
+examples/clients/**/*.jpg

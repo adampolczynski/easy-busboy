@@ -43,7 +43,6 @@
   },
   "devDependencies": {
     "@types/busboy": "^1.5.4",
-    "@types/express": "^5.0.0",
     "@types/node": "^22.7.4",
     "tsx": "^4.19.1"
   },
