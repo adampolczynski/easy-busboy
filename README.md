@@ -1,6 +1,10 @@
 # Easy, promise-like typed Busboy wrapper
 
-[![badge](https://img.shields.io/badge/download-NPM-<COLOR>.svg)](download-url) [![badge](https://img.shields.io/badge/test%20coverage-78%-green.svg)]() [![badge](https://img.shields.io/badge/TypeScript-blue.svg)](download-url) [![badge](https://img.shields.io/badge/pnpm-red.svg)](download-url) [![badge](https://img.shields.io/badge/my-LinkedIn-blue.svg)](https://www.linkedin.com/in/adam-polczynski-77595013b/)
+[![badge](https://img.shields.io/badge/download-NPM-<COLOR>.svg)](https://npmjs.org/package/easy-busboy) ![badge](https://img.shields.io/badge/tested%20with-Jest-<COLOR>.svg) ![badge](https://img.shields.io/badge/coverage-78%-green.svg) [![badge](https://img.shields.io/badge/my-LinkedIn-blue.svg)](https://www.linkedin.com/in/adam-polczynski-77595013b/)
+
+##### Built with:
+
+![badge](https://img.shields.io/badge/TypeScript-blue.svg) ![badge](https://img.shields.io/badge/pnpm-red.svg) ![badge](https://img.shields.io/badge/pure%20joy!-yellow.svg)
 
 [typescript-image]: https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white
 [pnpm-image]: https://img.shields.io/badge/pnpm-%234a4a4a.svg?style=for-the-badge&logo=pnpm&logoColor=f69220
@@ -12,6 +16,11 @@
 #### Work with multipart/form-data uploads with one-liner
 
 - easily handle multiple `values`/`files` sent as `formData` with **one-liner**,
+
+```
+const { fields, files } = await easyBusboy(req);
+```
+
 - based on [Busboy](http://github.com/mscdex/busboy),
 - to be used with [Koa](https://github.com/koajs/koa) and [Express](https://github.com/expressjs) (4 & 5),
 - [WIP] Works when implemented as a **Express GCP cloud function** (tested with firebase SDK, see [here](http://google.com))
