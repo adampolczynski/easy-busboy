@@ -1,6 +1,6 @@
 # Easy, promise-like typed Busboy wrapper
 
-[![badge](https://img.shields.io/badge/download-NPM-<COLOR>.svg)](download-url) [![badge](https://img.shields.io/badge/TypeScript-blue.svg)](download-url) [![badge](https://img.shields.io/badge/pnpm-red.svg)](download-url)
+[![badge](https://img.shields.io/badge/download-NPM-<COLOR>.svg)](download-url) ![badge](https://img.shields.io/badge/test%20coverage-78%-green.svg) [![badge](https://img.shields.io/badge/TypeScript-blue.svg)](download-url) [![badge](https://img.shields.io/badge/pnpm-red.svg)](download-url) [![badge](https://img.shields.io/badge/my-LinkedIn-blue.svg)](https://www.linkedin.com/in/adam-polczynski-77595013b/)
 
 [typescript-image]: https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white
 [pnpm-image]: https://img.shields.io/badge/pnpm-%234a4a4a.svg?style=for-the-badge&logo=pnpm&logoColor=f69220
