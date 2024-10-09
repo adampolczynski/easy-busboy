@@ -1,7 +1,7 @@
 {
   "name": "easy-busboy",
   "package-name": "easy-busboy",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "displayName": "Easy async Busboy",
   "description": "Easy to use promise-based Busboy wrapper for Express, Koa",
   "keywords": [
@@ -19,14 +19,12 @@
     "async",
     "await"
   ],
-  "main": "./dist/index.js",
+  "main": "./lib/index.ts",
   "author": {
     "name": "Adam Połczyński <adam_polczynski@yahoo.com>"
   },
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "install": "pnpm run build",
     "start": "tsx watch lib/index.ts",
     "test": "jest --coverage --verbose",
     "examples:servers:install": "cd examples/servers/express4 && pnpm i && cd ../express5 && pnpm i && cd ../koa && pnpm i",
