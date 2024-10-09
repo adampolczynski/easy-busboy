@@ -14,7 +14,7 @@
 - easily handle multiple `values`/`files` sent as `formData` with **one-liner**,
 - based on [Busboy](http://github.com/mscdex/busboy),
 - to be used with [Koa](https://github.com/koajs/koa) and [Express](https://github.com/expressjs) (4 & 5),
-- [WIP] Works when implemented as a **cloud function** (see [here](http://google.com))
+- [WIP] Works when implemented as a **Express GCP cloud function** (tested with firebase SDK, see [here](http://google.com))
 
 ### Standard usage using await syntax
 
@@ -68,7 +68,8 @@ Small note - if multiple fields with the same name are provided in request then 
 
 ## Files processing
 
-[WIP] allow to choose between processing stream in memory or in temp directory
+- `file` event provides `Readable` which is transformed directly (in memory) into `Buffer` which together is sent as a response aside `info` field storing additional file info,
+- [WIP] allow to choose between processing stream in memory or in temp directory
 
 ### Examples
 
@@ -85,3 +86,15 @@ then take a look at folders mentioned above and `package.json` scripts:
 - `pnpm run examples:servers:clean` (this one removes deps for servers examples),
 
 Finally when server is listening either launch some example client (look at `package.json` scripts) providing correct {PORT} as an argument (the same way as with server script) or launch `Postman` [Postman](https://www.postman.com/) and play with requests to `localhost:{PORT}/upload-file` !
+
+### Tests
+
+- `lib/*test.ts` contains some positive/negative test scenarios clearly explaining functionality,
+
+##### Coverage
+
+| File       | % Stmts   | % Branch   | % Funcs   | % Lines   | Uncovered Line #s   |
+| ---------- | --------- | ---------- | --------- | --------- | ------------------- |
+| All files  | 78.94     | 75         | 83.33     | 78.57     |
+| utils.ts   | 78.94     | 75         | 83.33     | 78.57     | 19-25               |
+| ---------- | --------- | ---------- | --------- | --------- | ------------------- |

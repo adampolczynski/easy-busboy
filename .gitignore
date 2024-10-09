@@ -4,6 +4,7 @@ pnpm-lock.yaml
 
 
 dist/
+coverage/
 
 # examples dependencies and lock
 examples/**/pnpm-lock.yaml
