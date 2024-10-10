@@ -3,6 +3,11 @@ name: easy-busboy package
 on:
   release:
     types: [created]
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        required: true
+        default: 'warning'
 
 jobs:
   publish-npm:
