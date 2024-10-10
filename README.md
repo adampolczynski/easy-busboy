@@ -6,24 +6,16 @@
 
 ![badge](https://img.shields.io/badge/TypeScript-blue.svg) ![badge](https://img.shields.io/badge/pnpm-red.svg) ![badge](https://img.shields.io/badge/pure%20joy!-yellow.svg)
 
-#### Work with multipart/form-data uploads with one-liner
+#### Multipart/form-data uploads with one-liner
 
-- easily handle multiple `values`/`files` sent as `formData` with **one-liner**,
-
-```ts
-const { fields, files } = await easyBusboy(req);
-```
-
-- well covered with tests (still to be enhanced),
+- use **one-liner** instead of event listeners to consume Busboy functionality, no other dependencies,
+- [WIP] option to specify the way file `stream` gets processed to `Buffer` ('memory' | 'storage'),
 - based on [Busboy](http://github.com/mscdex/busboy),
 - to be used with [Koa](https://github.com/koajs/koa) and [Express](https://github.com/expressjs) (4 & 5),
-- [WIP] Works when implemented as a **Express GCP cloud function** (tested with firebase SDK, see [here](http://google.com))
+- [WIP] works when implemented as a `Express GCP cloud function` (tested with `firebase SDK`, see [here-WIP](http://google.com)),
+- typed and covered with tests,
 
-### Standard usage using await syntax
-
-To install in your project run `pnpm i --save easy-busboy` or (npm) `npm i --save easy-busboy`
-
-[![badge](https://img.shields.io/badge/download-NPM-<COLOR>.svg)](download-url)
+### Standard usage (using await syntax)
 
 ```ts
 import { easyBusboy } from 'easy-busboy';
@@ -32,16 +24,41 @@ import { easyBusboy } from 'easy-busboy';
 app.post<{ fields: IFields; files: IFiles }>(
   '/upload-file',
   async (req, res) => {
-    const { fields, files } = await easyBusboy(req);
+    const { headers } = req;
+    const { fields, files } = await easyBusboy({ headers });
     res.send({ fields, files });
   }
 );
 
 // Koa
 router.post('/upload-file', async (ctx) => {
-  const { fields, files } = await easyBusboy(ctx);
+  const { headers } = ctx;
+  const { fields, files } = await easyBusboy({ headers });
   ctx.body = { fields, files };
 });
+```
+
+### Response format
+
+No data is being lost while parsing, below is the response interface:
+
+```ts
+{
+  files: Record<
+    string,
+    {
+      buffer: Buffer;
+      info: FileInfo; // imported from Busboy
+    }
+  >;
+  fields: Record<
+    string,
+    {
+      value: string;
+      info: FieldInfo; // imported from Busboy
+    }
+  >;
+}
 ```
 
 ### Providing Busboy config
@@ -51,6 +68,7 @@ import { easyBusboy } from 'easy-busboy';
 
 ...
 const { fields, files } = await easyBusboy(req, {
+      processStreamsMethod: 'memory' | 'storage', // [WIP] default 'memory'
       limits: cfg.limits, // see busboy config limits
       headers,
       conType, // content type
@@ -69,14 +87,18 @@ It is just a simple method which encapsules Busboy `onFile`/`onField` (and other
 
 Small note - if multiple fields with the same name are provided in request then response is going to contain all fields indexed accordingly (no duplicates boss, sorry)
 
-## Files processing
+## [WIP] Specify files processing method
 
-- `file` event provides `Readable` which is transformed directly (in memory) into `Buffer` which together is sent as a response aside `info` field storing additional file info,
-- [WIP] allow to choose between processing stream in memory or in temp directory
+You can specify `processStreamsMethod` in config, it may be:
+
+- `storage` - so that file `streams` will be converted into `Buffers` using temporary directory,
+- `memory` - above will be achieved without saving temporary file
+
+In first case file will be returned as a Buffer, in second it is a URI pointing temporary file path
 
 ### Examples
 
-Before implementing package in your project you can check out functionality using attached `examples` you can find there `Express` & `Koa` servers already utilizing `easyBusboy` method as well as example clients (`axios`, `fetch`)
+Before implementing package in your project you can check out functionality using attached `examples` you can find there `Express` & `Koa` servers already utilizing `easyBusboy` method as well as example client (`axios`)
 
 To be able to work with examples install dependencies in root folder first
 
@@ -95,10 +117,10 @@ Finally when server is listening either launch some example client (look at `pac
 - `pnpm test` to run,
 - `lib/*test.ts` contains some positive/negative test scenarios clearly explaining functionality,
 
-##### Coverage
+### Coverage
 
-| File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s |
-| --------- | ------- | -------- | ------- | ------- | ----------------- |
+| File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Lines |
+| --------- | ------- | -------- | ------- | ------- | --------------- |
 | All files | 88.52   | 71.42    | 70      | 96.07   |
-| index.ts  | 85.71   | 33.33    | 64.28   | 94.59   | 113-114           |
+| index.ts  | 85.71   | 33.33    | 64.28   | 94.59   | 113-114         |
 | utils.ts  | 94.73   | 100      | 83.33   | 100     |
