@@ -24,7 +24,7 @@ export interface IEasyBusboyResponse {
 
 /**
  * * Main method to utilize busboy, accepts Express's request
- * or Koa ctx objects and BusboyConfig
+ *   object and BusboyConfig
  * * When multiple files/fields with the same fieldname are provided
  * these going to be indexed automatically
  * @param {IncomingMessage & { headers: string }} request request object
