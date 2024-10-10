@@ -9,10 +9,10 @@
 #### Multipart/form-data uploads with one-liner
 
 - use **one-liner** instead of event listeners to consume Busboy functionality, no other dependencies,
-- [WIP] option to specify the way file `stream` gets processed to `Buffer` ('memory' | 'storage'),
 - based on [Busboy](http://github.com/mscdex/busboy),
-- to be used with [Express](https://github.com/expressjs) (4 & 5),
-- [WIP] works when implemented as a `Express GCP cloud function` (tested with `firebase SDK`, see [here-WIP](http://google.com)),
+- to be used with `Express` (4 & 5) and `Koa`,
+- [WIP] works when implemented as a `firebase cloud function`,
+- [WIP] option to specify the way file `stream` gets processed to `Buffer` ('memory' | 'storage'),
 - typed and covered with tests,
 
 ### Standard usage (using await syntax)
@@ -28,6 +28,12 @@ app.post<{ fields: IFields; files: IFiles }>(
     res.send({ fields, files });
   }
 );
+
+// Koa
+app.use(async (ctx) => {
+  const { fields, files } = await easyBusboy(ctx.req);
+  ctx.body = { fields, files };
+});
 ```
 
 ### Response format
@@ -88,7 +94,7 @@ You can specify `processStreamsMethod` in config, it may be:
 
 In first case file will be returned as a Buffer, in second it is a URI pointing temporary file path
 
-### Examples
+## Examples
 
 Before implementing package in your project you can check out functionality using attached `examples` you can find there `Express` servers already utilizing `easyBusboy` method as well as example client (`axios`)
 
@@ -99,12 +105,12 @@ To be able to work with examples install dependencies in root folder first
 then take a look at folders mentioned above and `package.json` scripts:
 
 - `pnpm run examples:servers:install` (this one installs deps for servers examples),
-- `pnpm run examples:servers:express4:start {PORT}` (run Express 4 server) (you can replace express4 here with express5), note PORT is optional and by default equals 3000,
+- `pnpm run examples:servers:express4:start {PORT}` (run Express 4 server) (you can replace express4 here with 'express5' or 'koa'), note PORT is optional and by default equals 3000,
 - `pnpm run examples:servers:clean` (this one removes deps for servers examples),
 
 Finally when server is listening either launch some example client (look at `package.json` scripts) providing correct {PORT} as an argument (the same way as with server script) or launch `Postman` [Postman](https://www.postman.com/) and play with requests to `localhost:{PORT}/upload-file` !
 
-### Tests
+## Tests
 
 - `pnpm test` to run,
 - `lib/*test.ts` contains some positive/negative test scenarios clearly explaining functionality,

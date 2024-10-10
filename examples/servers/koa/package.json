@@ -1,0 +1,20 @@
+{
+  "author": {
+    "name": "Adam Polczynski"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "tsx watch ./index.ts"
+  },
+  "dependencies": {
+    "koa": "^2.15.3",
+    "@koa/cors": "^5.0.0",
+    "koa-bodyparser": "^4.4.1"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.15.0",
+    "@types/koa-bodyparser": "^4.3.12",
+    "@types/koa__cors": "^5.0.0",
+    "tsx": "^4.19.1"
+  }
+}
