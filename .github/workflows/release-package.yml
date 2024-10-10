@@ -1,0 +1,22 @@
+name: easy-busboy package
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          node-version: 22
+          registry-url: https://npm.pkg.github.com/
+      - run: pnpm i
+      - run: pnpm test
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}

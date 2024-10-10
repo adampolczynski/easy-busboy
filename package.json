@@ -34,7 +34,6 @@
     "examples:servers:clean": "(cd examples/servers/express4 && rm -rf node_modules/ && rm pnpm-lock.yaml) & (cd ../express5 && rm -rf node_modules/ && rm pnpm-lock.yaml) & (cd ../koa && rm -rf node_modules/ && rm pnpm-lock.yaml)",
     "examples:clients:install": "cd examples/clients/axios && pnpm i",
     "examples:clients:axios:start": "tsx watch examples/clients/axios/index.ts",
-    "examples:clients:fetch:start": "tsx watch examples/clients/fetch/index.ts",
     "examples:clients:clean": "cd examples/clients/axios && rm -rf node_modules/ && rm pnpm-lock.yaml"
   },
   "dependencies": {
@@ -49,6 +48,9 @@
     "ts-node": "^10.9.2",
     "tsx": "^4.19.1",
     "typescript": "^5.6.3"
+  },
+  "publishConfig": {
+    "@adampe:registry": "https://npm.pkg.github.com"
   },
   "prettier": {
     "tabWidth": 2,
