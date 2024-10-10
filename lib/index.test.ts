@@ -4,7 +4,7 @@ import http from 'http';
 import { readFile } from 'fs/promises';
 import path from 'path';
 
-const HOST = 'localhost';
+const HOST = '0.0.0.0';
 const PORT = 3000;
 
 const ENDPOINT = `http://${HOST}:${PORT}`;

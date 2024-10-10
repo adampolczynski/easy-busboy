@@ -7,7 +7,7 @@ on:
     inputs:
       logLevel:
         required: true
-        default: 'warning'
+        default: 'debug'
 
 jobs:
   publish-npm:
@@ -15,14 +15,15 @@ jobs:
     permissions:
       packages: write
       contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
-          version: 9
-          node-version: 22
+          node-version: 21
           registry-url: https://npm.pkg.github.com/
-      - run: pnpm i
-      - run: pnpm test
+      - run: npm ci
+      - run: npm test
+      - run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
