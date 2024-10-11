@@ -93,7 +93,7 @@ You can specify `processStreamsMethod` in config, it may be:
 
 In first case file will be returned as a Buffer, in second it is a URI pointing temporary file path
 
-## Examples
+## Examples (see github repository)
 
 Before implementing package in your project you can check out functionality using attached `examples` you can find there `Express` servers already utilizing `easyBusboy` method as well as example client (`axios`)
 
