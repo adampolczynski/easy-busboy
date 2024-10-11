@@ -1,4 +1,4 @@
-./examples/
-./.github/
-./coverage
-./lib
+examples/
+.github/
+coverage/
+lib/

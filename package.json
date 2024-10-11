@@ -1,7 +1,7 @@
 {
   "name": "easy-busboy",
   "package-name": "easy-busboy",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "displayName": "Easy async Busboy",
   "description": "Easy to use promise-based Busboy wrapper for Express & Koa",
   "keywords": [
