@@ -1,7 +1,7 @@
 {
   "name": "easy-busboy",
   "package-name": "easy-busboy",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "displayName": "Easy async Busboy",
   "description": "Easy to use promise-based Busboy wrapper for Express & Koa",
   "keywords": [
@@ -27,9 +27,8 @@
   "license": "MIT",
   "scripts": {
     "build": "rm -rf dist/ && tsc",
-    "start": "tsx watch lib/index.js",
     "test": "jest --coverage --verbose",
-    "install": "tsc",
+    "postinstall": "tsc",
     "examples:servers:install": "cd examples/servers/express4 && pnpm i && cd ../express5 && pnpm i && cd ../koa && pnpm i",
     "examples:servers:express4:start": "tsx watch examples/servers/express4/index.ts",
     "examples:servers:express5:start": "tsx watch examples/servers/express5/index.ts",
@@ -41,10 +40,6 @@
   },
   "dependencies": {
     "busboy": "^1.6.0"
-  },
-  "peerDependencies": {
-    "busboy": "^1.6.0",
-    "@types/busboy": "^1.5.4"
   },
   "devDependencies": {
     "@types/busboy": "^1.5.4",
