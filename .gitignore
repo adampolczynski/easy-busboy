@@ -13,3 +13,5 @@ examples/**/node_modules/
 examples/clients/**/*.jpg
 
 examples/servers/firebase/
+
+dist/
