@@ -2,3 +2,4 @@ examples/
 .github/
 coverage/
 lib/
+tsconfig.json
