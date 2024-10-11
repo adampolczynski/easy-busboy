@@ -1,1 +1,4 @@
-examples/
+./examples/
+./.github/
+./coverage
+./lib
