@@ -10,8 +10,7 @@
 
 - use **one-liner** instead of event listeners to consume Busboy functionality, no other dependencies,
 - based on [Busboy](http://github.com/mscdex/busboy),
-- to be used with `Express` (4 & 5) and `Koa`,
-- [WIP] works when implemented as a `firebase cloud function`,
+- to be used with `Express` (4 & 5) and `Koa` or as a part of `firebase cloud function`,
 - [WIP] option to specify the way file `stream` gets processed to `Buffer` ('memory' | 'storage'),
 - typed and covered with tests,
 
@@ -20,7 +19,7 @@
 ```ts
 import { easyBusboy } from 'easy-busboy';
 
-// Express 4 or 5
+// Express 4 or 5 (the same for firebase cloud function)
 app.post<{ fields: IFields; files: IFiles }>(
   '/upload-file',
   async (req, res) => {

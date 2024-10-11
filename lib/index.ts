@@ -42,7 +42,7 @@ export interface IEasyBusboyResponse {
  * @return {IEasyBusboyResponse} returns Promise<{ fields, files }>
  */
 export const easyBusboy = (
-  request: IncomingMessage & { headers: IncomingHttpHeaders },
+  request: IncomingMessage & { headers: IncomingHttpHeaders; rawBody?: Buffer },
   config?: Busboy.BusboyConfig
 ): Promise<IEasyBusboyResponse> => {
   const files: IFiles = {};
@@ -51,7 +51,12 @@ export const easyBusboy = (
   const opts = { ...(config ?? {}), headers: request.headers };
 
   const busboy = Busboy(opts);
-  request.pipe(busboy);
+
+  if (request.rawBody) {
+    busboy.end(request.rawBody);
+  } else {
+    request.pipe(busboy);
+  }
 
   return new Promise((resolve, reject) => {
     const onField = (name: string, value: string, info: FieldInfo) => {
