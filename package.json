@@ -1,7 +1,7 @@
 {
   "name": "easy-busboy",
   "package-name": "easy-busboy",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "displayName": "Easy async Busboy",
   "description": "Easy to use promise-based Busboy wrapper for Express & Koa",
   "keywords": [
@@ -21,7 +21,6 @@
     "await"
   ],
   "main": "./dist/index.js",
-  "types": "./types/easy-busboy.d.ts",
   "author": {
     "name": "Adam Połczyński <adam_polczynski@yahoo.com>"
   },
@@ -42,6 +41,10 @@
   },
   "dependencies": {
     "busboy": "^1.6.0"
+  },
+  "peerDependencies": {
+    "busboy": "^1.6.0",
+    "@types/busboy": "^1.5.4"
   },
   "devDependencies": {
     "@types/busboy": "^1.5.4",
