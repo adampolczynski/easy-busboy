@@ -3,3 +3,4 @@ examples/
 coverage/
 lib/
 tsconfig.json
+jest.config.ts
