@@ -1,18 +1,18 @@
 import type { Readable } from 'stream';
-import { IFields, IFiles } from '.';
+import { IFields, IFiles, ITempFiles } from '.';
 
 /**
  * Adds values into given object.
  * @param {Object} object Object that we want to append
  * @param {string} fieldname Fieldname that is going to point its value pair
  * Note: if fieldname repeats itself its gonna be indexed like {fieldname_2}
- * @param {IFieldRecord | IFileRecord} payload A value to be appended to object
+ * @param {IFieldRecord | IFileRecord | ITempFiles} payload A value to be appended to object
  * @return {void}
  */
 export const appendToResult = (
-  obj: IFiles | IFields,
+  obj: IFiles | IFields | ITempFiles,
   fieldname: string,
-  payload: IFields[string] | IFiles[string]
+  payload: IFields[string] | IFiles[string] | ITempFiles[string]
 ) => {
   if (obj[fieldname]) {
     if (obj[`${fieldname}_2`]) {

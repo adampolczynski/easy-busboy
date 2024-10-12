@@ -1,24 +1,18 @@
 {
   "name": "easy-busboy",
   "package-name": "easy-busboy",
-  "version": "1.1.6",
+  "version": "1.2.0",
   "displayName": "Easy async Busboy",
   "description": "Easy to use promise-based Busboy wrapper for Express & Koa",
   "keywords": [
     "busboy",
     "easy-busboy",
-    "files",
-    "upload",
-    "wrapper",
-    "upload",
-    "multiform",
-    "multi-upload",
-    "formdata",
     "Express",
     "Koa",
-    "multiple-upload",
+    "cloud-functions",
+    "firebase",
     "async",
-    "await"
+    "typescript"
   ],
   "main": "./dist/index.js",
   "author": {

@@ -14,6 +14,11 @@ interface IFieldRecord {
   info: FieldInfo;
 }
 
+export interface ITempFiles
+  extends Record<
+    string,
+    Omit<IFileRecord, 'buffer'> & { promise: Promise<Buffer> }
+  > {}
 export interface IFiles extends Record<string, IFileRecord> {}
 export interface IFields extends Record<string, IFieldRecord> {}
 
@@ -46,17 +51,12 @@ export const easyBusboy = (
   config?: Busboy.BusboyConfig
 ): Promise<IEasyBusboyResponse> => {
   const files: IFiles = {};
+  const tempFiles: ITempFiles = {};
   const fields: IFields = {};
 
   const opts = { ...(config ?? {}), headers: request.headers };
 
   const busboy = Busboy(opts);
-
-  if (request.rawBody) {
-    busboy.end(request.rawBody);
-  } else {
-    request.pipe(busboy);
-  }
 
   return new Promise((resolve, reject) => {
     const onField = (name: string, value: string, info: FieldInfo) => {
@@ -66,17 +66,13 @@ export const easyBusboy = (
       appendToResult(fields, name, { value, info });
     };
 
-    const onFile = async (
-      fieldname: string,
-      stream: Readable,
-      info: FileInfo
-    ) => {
+    const onFile = (fieldname: string, stream: Readable, info: FileInfo) => {
       const tmpName = `${Math.random().toString(20).substring(2)}_${
         info.filename
       }`;
 
-      appendToResult(files, fieldname, {
-        buffer: await streamToBuffer(stream),
+      appendToResult(tempFiles, fieldname, {
+        promise: streamToBuffer(stream),
         info: { ...info, filename: tmpName },
       });
     };
@@ -91,7 +87,17 @@ export const easyBusboy = (
       onError(err);
     };
 
-    const onEnd = () => {
+    const onEnd = async () => {
+      const fileKeys = Object.keys(tempFiles);
+      if (fileKeys.length !== 0) {
+        for await (const k of fileKeys) {
+          const buffer = await tempFiles[k].promise;
+          files[k] = {
+            info: tempFiles[k].info,
+            buffer,
+          };
+        }
+      }
       resolve({
         fields,
         files,
@@ -109,8 +115,6 @@ export const easyBusboy = (
       busboy.removeListener('finish', onEnd);
     };
 
-    request.on('close', cleanup);
-
     busboy
       .on('field', onField)
       .on('file', onFile)
@@ -119,5 +123,12 @@ export const easyBusboy = (
       .on('partsLimit', () => onLimit('fields'))
       .on('error', onError)
       .on('finish', onEnd);
+
+    if (request.rawBody) {
+      busboy.end(request.rawBody);
+    } else {
+      request.on('close', cleanup);
+      request.pipe(busboy);
+    }
   });
 };

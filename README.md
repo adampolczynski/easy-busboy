@@ -1,6 +1,11 @@
-# Easy, promise-like typed Busboy wrapper
+# Easy, promise-like typed Busboy wrapper (works with firebase cloud functions)
 
 [![badge](https://img.shields.io/badge/download-NPM-<COLOR>.svg)](https://npmjs.org/package/easy-busboy) ![badge](https://img.shields.io/badge/tested%20with-Jest-<COLOR>.svg) ![badge](http://img.shields.io/badge/coverage-88%25-green.svg) [![badge](https://img.shields.io/badge/my-LinkedIn-blue.svg)](https://www.linkedin.com/in/adam-polczynski-77595013b/)
+
+##### Latest change:
+
+- fix support for firebase cloud functions,
+- reduced package size
 
 ##### Built with:
 
@@ -118,6 +123,6 @@ Finally when server is listening either launch some example client (look at `pac
 
 | File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Lines |
 | --------- | ------- | -------- | ------- | ------- | --------------- |
-| All files | 88.52   | 71.42    | 70      | 96.07   |
-| index.ts  | 85.71   | 33.33    | 64.28   | 94.59   | 113-114         |
+| All files | 88.4    | 70       | 70      | 94.91   |
+| index.ts  | 86      | 50       | 64.28   | 93.33   | 122-123,128     |
 | utils.ts  | 94.73   | 100      | 83.33   | 100     |
